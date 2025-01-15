@@ -29,32 +29,6 @@ Bu proje, kullanıcıların akademik ilgi alanlarına ve okuma geçmişlerine g�
 
 ---
 
-#### **Proje Kurulumu**
-1. **Depoyu Klonlayın**  
-   ```bash
-   git clone [<repository-link>](https://github.com/hilalnurtinas/Akademik-Makale-Oneri-Sistemi)
-   ```
-
-2. **Gerekli Kütüphaneleri Yükleyin**  
-   Projede kullanılan Python kütüphanelerini yüklemek için aşağıdaki komutu çalıştırın:
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-3. **Uygulamayı Başlatın**  
-   Flask uygulamasını başlatmak için terminalde şu komutları çalıştırın:
-   ```bash
-   python app.py
-   ```
-
-4. **Web Arayüzüne Erişim**  
-   Tarayıcınızda aşağıdaki URL’yi açarak uygulamayı görüntüleyin:
-   ```bash
-   http://127.0.0.1:5000
-   ```
-
----
-
 #### **Proje Yapısı**
 - **Backend**:
   - NLP tabanlı metin işleme, vektör temsilleri oluşturma ve öneri algoritmaları.
