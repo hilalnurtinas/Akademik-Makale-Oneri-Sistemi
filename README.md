@@ -32,7 +32,7 @@ Bu proje, kullanıcıların akademik ilgi alanlarına ve okuma geçmişlerine g�
 #### **Proje Kurulumu**
 1. **Depoyu Klonlayın**  
    ```bash
-   git clone <repository-link>
+   git clone [<repository-link>](https://github.com/hilalnurtinas/Akademik-Makale-Oneri-Sistemi)
    ```
 
 2. **Gerekli Kütüphaneleri Yükleyin**  
