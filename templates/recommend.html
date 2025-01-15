@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Öneriler</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+  <body>
+    <h1>{{ username }} için Makale Önerileri</h1>
+    <ul>
+      {% for article in recommendations %}
+        <li>
+          <h2>{{ article['filename'] }}</h2>
+          <p>{{ article['cleaned_text'] }}</p>
+          <p><strong>Anahtar Kelimeler:</strong> {{ ', '.join(article['keys']) }}</p>
+        </li>
+      {% endfor %}
+    </ul>
+    <a href="{{ url_for('index') }}">Ana Sayfaya Dön</a>
+  </body>
+</html>

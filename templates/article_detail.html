@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Makale Detayı</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>{{ article.filename }}</h1>
+        <p>{{ article.cleaned_text }}</p>
+        <a href="{{ url_for('index') }}" class="button">Ana Sayfaya Dön</a>
+    </div>
+</body>
+</html>

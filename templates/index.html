@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ana Sayfa</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <header>
+        {% if current_user.is_authenticated %}
+        <span class="welcome">Hoş geldiniz, {{ current_user.username }}</span>
+        <a href="{{ url_for('profile', username=current_user.username) }}" class="button profile-button">Profil Düzenle</a>
+        <a href="{{ url_for('logout') }}" class="button">Çıkış Yap</a>
+        {% else %}
+        <a href="{{ url_for('login') }}" class="button">Giriş Yap</a>
+        <a href="{{ url_for('register') }}" class="button">Kayıt Ol</a>
+        {% endif %}
+    </header>
+
+    <div class="container">
+        <h1>AKADEMİK MAKALE ÖNERİ SAYFASI</h1>
+
+        <!-- Top 5 Scribert Recommendations -->
+        <h2>Scibert Bazlı Benzer Makaleler:</h2>
+        {% for rec in all_scribert_recommendations %}
+        <h3>Okunan Makale: {{ rec.clicked_article }}</h3>
+        <ul>
+            {% for article in rec.recommendations %}
+            <li>
+                <a href="{{ url_for('article_detail', article_id=article['_id']) }}">
+                    <h3>{{ article['filename'] }} </h3>
+                </a>
+                <p class="recommendation-content">{{ article['cleaned_text'][:200] }}</p>
+                <p class="recommendation-keys"><strong>Anahtar Kelimeler:</strong> {{ ', '.join(article['keys']) }}</p>
+
+            </li>
+            {% endfor %}
+        </ul>
+        {% endfor %}
+
+        <!-- Top 5 FastText Recommendations -->
+        <h2>FastText Bazlı Benzer Makaleler:</h2>
+        {% for rec in all_fasttext_recommendations %}
+        <h3>Okunan Makale: {{ rec.clicked_article }}</h3>
+        <ul>
+            {% for article in rec.recommendations %}
+            <li>
+                <a href="{{ url_for('article_detail', article_id=article['_id']) }}">
+                    <h3>{{ article['filename'] }}</h3>
+                </a>
+                <p class="recommendation-content">{{ article['cleaned_text'][:200] }}</p>
+                <p class="recommendation-keys"><strong>Anahtar Kelimeler:</strong> {{ ', '.join(article['keys']) }}</p>
+
+            </li>
+            {% endfor %}
+        </ul>
+        {% endfor %}
+
+        <!-- Önerilen Makaleler -->
+        {% if initial_recommendations %}
+        <div class="recommendation-section">
+            <h2>Önerilen Makaleler</h2>
+            <ul class="recommendation-list">
+                {% for article in initial_recommendations %}
+                <li class="recommendation-item">
+                    <a href="{{ url_for('article_detail', article_id=article['_id']) }}">
+                        <h3>{{ article['filename'] }}</h3>
+                    </a>
+                    <p class="recommendation-content">{{ article['cleaned_text'][:200] }}</p>
+                    <p class="recommendation-keys"><strong>Anahtar Kelimeler:</strong> {{ ', '.join(article['keys']) }}</p>
+                    <p class="recommendation-common-interests"><strong>Ortak İlgi Alanları:</strong> {{ ', '.join(article['common_interests']) }}</p>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+        <!-- Rastgele Makaleler -->
+        <div class="article-section">
+            <h2>Rastgele Makaleler</h2>
+            <ul class="article-list">
+                {% for article in articles %}
+                <li class="article-item">
+                    <a href="{{ url_for('article_detail', article_id=article['_id']) }}">
+                        <h3>{{ article['filename'] }}</h3>
+                    </a>
+                    <p class="article-content">{{ article['cleaned_text'][:200] }}</p>
+                    <p class="article-keys"><strong>Anahtar Kelimeler:</strong> {{ ', '.join(article['keys']) }}</p>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>  
+</body>
+</html>

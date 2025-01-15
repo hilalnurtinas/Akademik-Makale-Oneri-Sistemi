@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kayıt Ol</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <h1>Kayıt Ol</h1>
+    <form action="{{ url_for('register') }}" method="POST">
+        <label for="username">Kullanıcı Adı:</label><br>
+        <input type="text" id="username" name="username" required><br>
+        <label for="password">Şifre:</label><br>
+        <input type="password" id="password" name="password" required><br>
+        <label for="age">Yaş:</label><br>
+        <input type="text" id="age" name="age" required><br>
+        <label for="gender">Cinsiyet:</label><br>
+        <select id="gender" name="gender">
+            <option value="male">Erkek</option>
+            <option value="female">Kadın</option>
+        </select><br>
+        <label for="interests">İlgi Alanları:</label><br>
+        <input type="text" id="interests" name="interests" required><br>
+        <small>İlgi alanlarını virgülle ayırarak giriniz. (örn: machine learning, data mining)</small><br>
+        <button type="submit">Kayıt Ol</button>
+    </form>
+    {% for message in get_flashed_messages() %}
+    <div class="flash">{{ message }}</div>
+    {% endfor %}
+</body>
+</html>
